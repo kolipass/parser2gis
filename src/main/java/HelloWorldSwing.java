@@ -80,12 +80,19 @@ public class HelloWorldSwing {
         JFrame frame = new JFrame("Test frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        String[] columnNames = {
-                "api_version",
-                "response_code modified",
-                "error_message",
-                "error_code"
-        };
+//        String[] columnNames = {
+//                "api_version",
+//                "response_code modified",
+//                "error_message",
+//                "error_code"
+//        };
+
+        JComboBox combo = new JComboBox();
+//        combo.setFont( new Font("Verdana", Font.PLAIN, 25));
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+        JScrollPane scrollPane = new JScrollPane(combo);
+        mainPanel.add(scrollPane, BorderLayout.CENTER);
 
         try{
             System.out.println("Json Parser started..");
@@ -95,8 +102,10 @@ public class HelloWorldSwing {
             ServerResponse serverResponse = gson.fromJson(r, ServerResponse.class);
             System.out.println(serverResponse);
             System.out.println( ""+serverResponse.getResult().size());
+
             for(DoubleGISProjectModel model : serverResponse.getResult()){
                 System.out.println(model);
+                combo.addItem(model);
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -123,12 +132,8 @@ public class HelloWorldSwing {
 //            {"avisp.exe", "17.12.2007 16:58", "File", "12,67MB"},
 //    };
 
-        JTable table = new JTable();
+//        JTable table = new JTable();
 
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
-        JScrollPane scrollPane = new JScrollPane(table);
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
 
         frame.getContentPane().add(mainPanel);
         frame.setPreferredSize(new Dimension(450, 200));

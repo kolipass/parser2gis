@@ -23,7 +23,8 @@ public class DoubleGISProjectModel {
     String rubricscount;
     String geoscount;
     String country_code;
-    public  DoubleGISProjectModel(){
+
+    public DoubleGISProjectModel() {
 
     }
 
@@ -164,23 +165,25 @@ public class DoubleGISProjectModel {
     }
 
     @Override
-    public String toString(){
-         return "id: "+ id+
-" name: "+name+
-" code:" +code+
-" language "+language+
-" timezone "+timezone+
-" min_zoomlevel "+min_zoomlevel+
-" max_zoomlevel "+max_zoomlevel+
-" centroid "+centroid+
-" transport "+transport+
-" traffic "+traffic+
-" flamp "+flamp+
-" zoomlevel "+zoomlevel+
-" firmscount "+firmscount+
-" filialscount "+filialscount+
-" rubricscount "+rubricscount+
-" geoscount "+geoscount+
-" country_code "+country_code;
+    public String toString() {
+        return
+                " name: " + name
+//      +  "id: "+ id+
+//" code:" +code+
+//" language "+language+
+//" timezone "+timezone+
+//" min_zoomlevel "+min_zoomlevel+
+//" max_zoomlevel "+max_zoomlevel+
+//" centroid "+centroid+
+//" transport "+transport+
+//" traffic "+traffic+
+//" flamp "+flamp+
+//" zoomlevel "+zoomlevel+
+//" firmscount "+firmscount+
+//" filialscount "+filialscount+
+//" rubricscount "+rubricscount+
+//" geoscount "+geoscount+
+//" country_code "+country_code
+                ;
     }
 }
