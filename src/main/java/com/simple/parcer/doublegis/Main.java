@@ -3,11 +3,15 @@ package com.simple.parcer.doublegis;
 import com.google.gson.Gson;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     private static String projectList = "http://catalog.api.2gis.ru/project/list?";
@@ -41,36 +45,82 @@ public class Main {
             printRubrics(args[0]);
         } else if (args.length == 2) {
             searchingRubric(args[0], args[1]);
+        } else if (args.length == 3) {
+            exportXML(args[2], searchingRubric(args[0], args[1]));
         }
 
 
     }
 
-    private static void searchingRubric(String projectName, String rubric) {
+    private static void exportXML(String filepath, List<DoubleGISFirmtModel> models) {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("Firms");
+
+        int rownum = 0;
+        for (DoubleGISFirmtModel model : models) {
+            Row row = sheet.createRow(rownum++);
+            int i = 0;
+            Cell id = row.createCell(i++);
+            id.setCellValue(model.getId());
+            Cell name = row.createCell(i++);
+            name.setCellValue(model.getName());
+            Cell lat = row.createCell(i++);
+            lat.setCellValue(model.getLat());
+            Cell lon = row.createCell(i++);
+            lon.setCellValue(model.getLon());
+            Cell adr = row.createCell(i++);
+            adr.setCellValue(model.getAddress());
+            Cell city = row.createCell(i++);
+            city.setCellValue(model.getCity_name());
+            Cell firmc = row.createCell(i++);
+            firmc.setCellValue(model.getFirmscount());
+        }
+
+
         try {
-            Reader r = new InputStreamReader(getJSONData(searchingRubricURL +  "what=" + rubric + "&where="+projectName+ "&page=1&pagesize=50&sort=relevance&" + versionKey));
+            FileOutputStream out =
+                    new FileOutputStream(new File(filepath));
+            workbook.write(out);
+            out.close();
+            System.out.println("Excel written successfully..");
 
-            System.out.println(searchingRubricURL +  "what=" + rubric + "&where="+projectName+ "&page=1&pagesize=30&sort=relevance&" + versionKey);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            System.out.println(r.toString());
+    }
 
-            Gson gson = new Gson();
-            SearchRubricsServerResponse serverResponse = gson.fromJson(r, SearchRubricsServerResponse.class);
+    private static SearchRubricsServerResponse searchingRubric(String projectName, String rubric, int page) {
+        Reader r = new InputStreamReader(getJSONData(searchingRubricURL + "what=" + rubric + "&where=" + projectName + "&page=1&pagesize=50&sort=relevance&" + versionKey));
 
-            System.out.println(serverResponse);
+//        System.out.println(searchingRubricURL + "what=" + rubric + "&where=" + projectName + "&page=" + page + "&pagesize=30&sort=relevance&" + versionKey);
 
-            if (serverResponse.getError_code() == null) {
+        Gson gson = new Gson();
+        return gson.fromJson(r, SearchRubricsServerResponse.class);
+    }
 
-                System.out.println("" + serverResponse.getResult().size());
+    private static List<DoubleGISFirmtModel> searchingRubric(String projectName, String rubric) {
+        try {
+            List<DoubleGISFirmtModel> models = new ArrayList<DoubleGISFirmtModel>();
 
-                for (DoubleGISFirmtModel model : serverResponse.getResult()) {
+            SearchRubricsServerResponse serverResponse = null;
+            int page = 1;
+            do {
+                System.out.println("page " + page);
+                serverResponse = searchingRubric(projectName, rubric, page);
+                models.addAll(serverResponse.getResult());
+                page++;
+            } while ((serverResponse.getTotal() > models.size()) || (serverResponse.error_code != null));
 
-                    System.out.println(model);
-                }
-            }
+
+            return models;
         } catch (Exception ex) {
             ex.printStackTrace();
+            return null;
         }
+
     }
 
     private static void printRubrics(String projectName) {
