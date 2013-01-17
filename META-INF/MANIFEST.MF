@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: com.simple.parcer.doublegis.doublegis
+Main-Class: com.simple.parcer.doublegis.Main
+

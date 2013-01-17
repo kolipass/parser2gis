@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Parse2Gis">
+    <output-path>$PROJECT_DIR$/out/artifacts/Parse2Gis</output-path>
+    <root id="archive" name="Parse2Gis.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

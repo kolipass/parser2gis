@@ -1,3 +1,5 @@
+package com.simple.parcer.doublegis;
+
 //import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +20,9 @@ public class JSONController {
 //    @RequestMapping(value = "{name}", method = RequestMethod.GET)
 //    public
 //    @ResponseBody
-//    ServerResponse getShopInJSON(@PathVariable String name) {
+//    com.simple.parcer.doublegis.ProjectServerResponse getShopInJSON(@PathVariable String name) {
 //
-//        ServerResponse shop = new ServerResponse();
+//        com.simple.parcer.doublegis.ProjectServerResponse shop = new com.simple.parcer.doublegis.ProjectServerResponse();
 ////        shop.setName(name);
 ////        shop.setStaffName(new String[]{"mkyong1", "mkyong2"});
 //

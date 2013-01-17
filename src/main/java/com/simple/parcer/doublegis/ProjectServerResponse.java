@@ -1,3 +1,5 @@
+package com.simple.parcer.doublegis;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  * Time: 17:54
  * Information about this garbage is coming soon
  */
-public class ServerResponse {
+public class ProjectServerResponse {
     String api_version;
     /**
      * response_code:
@@ -69,7 +71,7 @@ public class ServerResponse {
 
     List<DoubleGISProjectModel> result;
 
-    public ServerResponse() {
+    public ProjectServerResponse() {
     }
 
     public List<DoubleGISProjectModel> getResult() {

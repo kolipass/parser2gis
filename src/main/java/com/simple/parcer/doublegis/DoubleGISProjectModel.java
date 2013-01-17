@@ -1,3 +1,5 @@
+package com.simple.parcer.doublegis;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Kolipass
@@ -168,22 +170,22 @@ public class DoubleGISProjectModel {
     public String toString() {
         return
                 " name: " + name
-//      +  "id: "+ id+
-//" code:" +code+
-//" language "+language+
-//" timezone "+timezone+
-//" min_zoomlevel "+min_zoomlevel+
-//" max_zoomlevel "+max_zoomlevel+
-//" centroid "+centroid+
-//" transport "+transport+
-//" traffic "+traffic+
-//" flamp "+flamp+
-//" zoomlevel "+zoomlevel+
-//" firmscount "+firmscount+
-//" filialscount "+filialscount+
-//" rubricscount "+rubricscount+
-//" geoscount "+geoscount+
-//" country_code "+country_code
+                        + " id: " + id +
+                        " code:" + code +
+                        " language " + language +
+                        " timezone " + timezone +
+                        " min_zoomlevel " + min_zoomlevel +
+                        " max_zoomlevel " + max_zoomlevel +
+                        " centroid " + centroid +
+                        " transport " + transport +
+                        " traffic " + traffic +
+                        " flamp " + flamp +
+                        " zoomlevel " + zoomlevel +
+                        " firmscount " + firmscount +
+                        " filialscount " + filialscount +
+                        " rubricscount " + rubricscount +
+                        " geoscount " + geoscount +
+                        " country_code " + country_code
                 ;
     }
 }
