@@ -93,7 +93,7 @@ public class Main {
     }
 
     private static SearchRubricsServerResponse searchingRubric(String projectName, String rubric, int page) {
-        Reader r = new InputStreamReader(getJSONData(searchingRubricURL + "what=" + rubric + "&where=" + projectName + "&page=1&pagesize=50&sort=relevance&" + versionKey));
+        Reader r = new InputStreamReader(getJSONData(searchingRubricURL + "what=" + rubric + "&where=" + projectName + "&page=" + page + "&pagesize=50&sort=relevance&" + versionKey));
 
 //        System.out.println(searchingRubricURL + "what=" + rubric + "&where=" + projectName + "&page=" + page + "&pagesize=30&sort=relevance&" + versionKey);
 
@@ -155,7 +155,7 @@ public class Main {
             Gson gson = new Gson();
 
             Reader r = new InputStreamReader(getJSONData(projectList + versionKey));
-
+            System.out.println(projectList + versionKey);
             System.out.println(r.toString());
 
             ProjectServerResponse serverResponse = gson.fromJson(r, ProjectServerResponse.class);
