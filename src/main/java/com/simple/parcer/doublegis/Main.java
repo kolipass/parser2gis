@@ -30,7 +30,8 @@ public class Main {
             org.apache.http.HttpResponse response = httpClient.execute(method);
             data = response.getEntity().getContent();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Internet is off");
+            return null;
         }
 
         return data;
@@ -104,7 +105,6 @@ public class Main {
     private static List<DoubleGISFirmtModel> searchingRubric(String projectName, String rubric) {
         try {
             List<DoubleGISFirmtModel> models = new ArrayList<DoubleGISFirmtModel>();
-
             SearchRubricsServerResponse serverResponse = null;
             int page = 1;
             do {
@@ -125,24 +125,27 @@ public class Main {
 
     private static void printRubrics(String projectName) {
         try {
-            Reader r = new InputStreamReader(getJSONData(rubricURL + projectName + "&" + versionKey));
+            InputStream inputStream = getJSONData(rubricURL + projectName + "&" + versionKey);
+            if (inputStream != null) {
+                Reader r = new InputStreamReader(inputStream);
 
-            System.out.println(rubricURL + projectName + "&" + versionKey);
+                System.out.println(rubricURL + projectName + "&" + versionKey);
 
-            System.out.println(r.toString());
+                System.out.println(r.toString());
 
-            Gson gson = new Gson();
-            RubricsServerResponse serverResponse = gson.fromJson(r, RubricsServerResponse.class);
+                Gson gson = new Gson();
+                RubricsServerResponse serverResponse = gson.fromJson(r, RubricsServerResponse.class);
 
-            System.out.println(serverResponse);
+                System.out.println(serverResponse);
 
-            if (serverResponse.getError_code() == null) {
+                if (serverResponse.getError_code() == null) {
 
-                System.out.println("" + serverResponse.getResult().size());
+                    System.out.println("" + serverResponse.getResult().size());
 
-                for (DoubleGISRubricModel model : serverResponse.getResult()) {
+                    for (DoubleGISRubricModel model : serverResponse.getResult()) {
 
-                    System.out.println(model);
+                        System.out.println(model);
+                    }
                 }
             }
         } catch (Exception ex) {
@@ -153,22 +156,24 @@ public class Main {
     private static void printProjects() {
         try {
             Gson gson = new Gson();
+            InputStream inputStream = getJSONData(projectList + versionKey);
+            if (inputStream != null) {
+                Reader r = new InputStreamReader(inputStream);
+                System.out.println(projectList + versionKey);
+                System.out.println(r.toString());
 
-            Reader r = new InputStreamReader(getJSONData(projectList + versionKey));
-            System.out.println(projectList + versionKey);
-            System.out.println(r.toString());
+                ProjectServerResponse serverResponse = gson.fromJson(r, ProjectServerResponse.class);
 
-            ProjectServerResponse serverResponse = gson.fromJson(r, ProjectServerResponse.class);
+                System.out.println(serverResponse);
 
-            System.out.println(serverResponse);
+                if (serverResponse.getError_code() == null) {
 
-            if (serverResponse.getError_code() == null) {
+                    System.out.println("" + serverResponse.getResult().size());
 
-                System.out.println("" + serverResponse.getResult().size());
+                    for (DoubleGISProjectModel model : serverResponse.getResult()) {
 
-                for (DoubleGISProjectModel model : serverResponse.getResult()) {
-
-                    System.out.println(model);
+                        System.out.println(model);
+                    }
                 }
             }
         } catch (Exception ex) {
