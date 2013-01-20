@@ -1,24 +1,31 @@
-package com.simple.parcer.doublegis;
+package com.simple.parcer.doublegis.Models;
 
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Kolipass
- * Date: 25.11.12
- * Time: 20:48
- * Information about this garbage is coming soon
+ * Модель рубрики
+ * <a href="в документации">http://api.2gis.ru/doc/firms/list/rubricator/</a>
  */
 public class DoubleGISRubricModel {
+    /**
+     * id 	Строка 	Идентификатор рубрики. Пример: 4503719886454906
+     */
     String id;
-    //    id 	Строка 	Идентификатор рубрики. Пример: 4503719886454906
-//    name 	Строка 	Название рубрики. Пример: Аварийные службы
+    /**
+     * name 	Строка 	Название рубрики. Пример: Аварийные службы
+     */
     String name;
-    //    alias 	Строка 	Транслитерированое название рубрики. Пример: avarijjnye_sluzhby
+    /**
+     * alias 	Строка 	Транслитерированое название рубрики. Пример: avarijjnye_sluzhby
+     */
     String alias;
-    //    parent_id 	Строка 	Идентификатор родительской рубрики, для которой был получен список. Пример: 4503719886460203
+    /**
+     *    parent_id 	Строка 	Идентификатор родительской рубрики, для которой был получен список. Пример: 4503719886460203
+     */
     String parent_id;
-    //    children 	Массив 	Список дочерних рубрик. Массив объектов с ключами id, name, alias.
+    /**
+     *  children 	Массив 	Список дочерних рубрик. Массив объектов с ключами id, name, alias.
+     */
     List<DoubleGISRubricModel> children;
 
     public DoubleGISRubricModel() {
@@ -71,6 +78,6 @@ public class DoubleGISRubricModel {
                 + " id: " + id +
                 " alias: " + alias +
                 " parent_id: " + parent_id
-                + " children: " + children                 ;
+                + " children: " + children;
     }
 }

@@ -1,30 +1,93 @@
-package com.simple.parcer.doublegis;
+package com.simple.parcer.doublegis.Models;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Kolipass
- * Date: 25.11.12
- * Time: 20:48
- * Information about this garbage is coming soon
+ * Модель проетков
+ * Проект — это агломерация, включающая крупный город и ближайшие населённые пункты. Теперь можно реализовать выбор города, как это сделано в Онлайн-версии 2ГИС, являющейся партнёром API.
+ * <p/>
+ * URL: http://catalog.api.2gis.ru/project/list
+ *  Url для доступа к списку проектов  подробнее  <a href="в документации">http://api.2gis.ru/doc/firms/list/project-list/</a>
  */
 public class DoubleGISProjectModel {
+    /**
+     * Идентификатор проекта. Пример: 32
+     */
     int id;
+
+    /**
+     * Название проекта. Пример: Москва
+     */
     String name;
+    /**
+     * Буквенный идентификатор проекта. Пример: n_novgorod
+     */
     String code;
+    /**
+     * Язык проекта. Возможные значения: ru
+     */
     String language;
-    String timezone;
+    /**
+     * * Число 	Минимальный уровень масштаба, для которого есть тайлы проекта. Пример: 9.
+     */
     String min_zoomlevel;
+    /**
+     * Число 	Максимальный уровень масштаба, для которого есть тайлы проекта. Пример: 17.
+     */
     String max_zoomlevel;
+
+    /**
+     * <p/>
+     * Часовой пояс в формате Time Zone Database.
+     * <p/>
+     * Примеры:
+     * <p/>
+     * Asia/Novosibirsk
+     * Europe/Moscow
+     * Indian/Chagos
+     */
+    String timezone;
+    /**
+     * Исторический центр главного города, рекомендуется для центрирования проекта. Точка в формате WKT. Пример: POINT(83.062249469999145 54.956108471916146).
+     */
     String centroid;
+    /**
+     * Наличие данных по общественному транспорту: true — данные есть, false — данных нет.
+     */
     String transport;
+    /**
+     * Наличие данных по пробкам: true — данные есть, false — данных нет.
+     */
     String traffic;
+    /**
+     * Присутствие проекта на flamp.ru: true — присутствует, false — не присутствует.
+     */
     String flamp;
+
+    /**
+     * Уровень масштаба, рекомендуемый для дефолтного отображения всего проекта. Пример: 11.
+     */
     String zoomlevel;
+    /**
+     * Количество фирм в проекте. Пример: 42839.
+     */
     String firmscount;
+    /**
+     * Количество филиалов в проекте. Пример: 60975.
+     */
     String filialscount;
+    /**
+     * Количество рубрик в проекте. Пример: 953.
+     */
+
     String rubricscount;
+    /**
+     * Количество геообъектов в проекте. Пример: 143452.
+     */
     String geoscount;
+    /**
+     * Количество геообъектов в проекте. Пример: 143452.
+     */
     String country_code;
+
 
     public DoubleGISProjectModel() {
 
