@@ -29,4 +29,5 @@
 Для сборки maven'ом
 ==========
  Собери проект через mvn compiler:compile
- А потом сгенерирую jar через mvn assembly:single
+
+ А потом сгенерируй jar через mvn assembly:single
